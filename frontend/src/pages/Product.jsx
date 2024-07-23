@@ -18,7 +18,7 @@ const Product = () => {
 
   const getProductsData = async () => {
     try {
-      const response = await fetch("http://localhost:4000/api/v1/admin/products/all", {
+      const response = await fetch("https://sg-store5.onrender.com/api/v1/admin/products/all", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -51,7 +51,7 @@ const Product = () => {
   console.log(displayedProducts);
   const deleteProduct = async (id) => {
     try {
-      const res2 = await fetch(`http://localhost:4000/api/v1/admin/products/${id}`, {
+      const res2 = await fetch(`https://sg-store5.onrender.com/api/v1/admin/products/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

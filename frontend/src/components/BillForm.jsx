@@ -30,7 +30,7 @@ const BillForm = () => {
     };
     
     try {
-      const response = await fetch('http://localhost:4000/api/v1/bill/createBill', {
+      const response = await fetch('https://sg-store5.onrender.com/api/v1/bill/createBill', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

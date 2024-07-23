@@ -9,7 +9,7 @@ function Employeedetail() {
 
   const getEmployeeData = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/v1/employee/me/${id}`, {
+      const response = await fetch(`https://sg-store5.onrender.com/api/v1/employee/me/${id}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

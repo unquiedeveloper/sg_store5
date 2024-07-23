@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import {useNavigate} from "react-router-dom"
+import ProductPreview from './ProductPreview';
 function Addproduct() {
+  const [product1, setProduct1]= useState([]);
 
   const navigator = useNavigate();
   const [inpval, setINP] = useState({
@@ -30,7 +32,7 @@ function Addproduct() {
     const { uniqueid, name, brand, color, qty, size, price } = inpval;
     const adminToken = localStorage.getItem('adminToken');
     try {
-      const res = await fetch('http://localhost:4000/api/v1/admin/addproducts', {
+      const res = await fetch('https://sg-store5.onrender.com/api/v1/admin/addproducts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -42,9 +44,13 @@ function Addproduct() {
       });
 
       const data = await res.json();
+     
 
       console.log('Response status:', res.status);
       console.log('Response data:', data);
+      console.log(data.product);
+      setProduct1(data.product);
+      console.log(product1);
 
       if (res.status === 400 || !data) {
         setError(data.message || 'Provide full info');
@@ -54,7 +60,7 @@ function Addproduct() {
         toast.error('Product ID is already registered');
       } else if (res.status === 200) {
         toast.success('Product added successfully');
-        navigator("/")
+        // navigator("/")
         setError(''); // Clear any previous errors
       } else {
         setError('Unexpected error occurred');
@@ -68,6 +74,7 @@ function Addproduct() {
   }
 
   return (
+    <>
     <div className="bg-white border-4 rounded-lg shadow relative m-10">
       <div className="flex items-start justify-between p-5 border-b rounded-t">
         <h3 className="text-xl font-semibold">Add New Product</h3>
@@ -232,6 +239,9 @@ function Addproduct() {
         </form>
       </div>
     </div>
+      {product1 && <ProductPreview  product1={product1} />}
+
+      </>
   )
 }
 
